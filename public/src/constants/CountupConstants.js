@@ -1,0 +1,6 @@
+module.exports = {
+  RELOAD: 'RELOAD',
+  COUNTUP: 'COUNTUP',
+  RESET: 'RESET',
+  APISYNCED: 'APISYNCED'
+};
