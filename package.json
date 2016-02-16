@@ -10,8 +10,8 @@
     "ejs": "2.3.3",
     "express": "4.13.3",
     "mongoose": "~4.1.10",
-    "kerberos": "0.0.9",
-    "cool-ascii-faces": "~1.3.x"
+    "socket.io": "~1.3.7",
+    "kerberos": "0.0.9"
   },
   "engines": {
     "node": "0.12.7"
@@ -25,5 +25,14 @@
     "heroku",
     "express"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.5.0",
+    "babelify": "^7.2.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
+    },
+    "babel": {
+        "presets": ["es2015"]
+    }
 }

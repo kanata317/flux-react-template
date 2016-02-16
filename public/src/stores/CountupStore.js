@@ -7,6 +7,7 @@ var CHANGE_EVENT = 'change';
 
 var _count = 0;
 
+
 var CountupStore = assign({}, EventEmitter.prototype, {
   getCount: function() {
     return _count;
