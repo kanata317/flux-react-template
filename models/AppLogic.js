@@ -62,7 +62,11 @@ _mongoose2.default.model('UserInfo', userInfoSchema);
 _mongoose2.default.model('Question', questionSchema);
 _mongoose2.default.model('ChoosedResult', choosedResultSchema);
 
-_mongoose2.default.connect('mongodb://localhost/test');
+if (process.env.MONGOLAB_URI) {
+  _mongoose2.default.connect(process.env.MONGOLAB_URI);
+} else {
+  _mongoose2.default.connect('mongodb://localhost/test');
+}
 
 var UserInfo = _mongoose2.default.model('UserInfo');
 

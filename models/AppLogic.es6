@@ -54,7 +54,12 @@ Mongoose.model('UserInfo', userInfoSchema);
 Mongoose.model('Question', questionSchema);
 Mongoose.model('ChoosedResult', choosedResultSchema);
 
-Mongoose.connect('mongodb://localhost/test');
+if (process.env.MONGOLAB_URI) {
+  Mongoose.connect(process.env.MONGOLAB_URI);
+} else {
+  Mongoose.connect('mongodb://localhost/test');
+}
+
 
 const UserInfo = Mongoose.model('UserInfo');
 
