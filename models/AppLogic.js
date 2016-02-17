@@ -34,8 +34,10 @@ var questionSchema = new _mongoose2.default.Schema({
   },
   answerOptions: [{
     number: {
-      type: String,
-      answerSentence: String
+      type: String
+    },
+    answerSentence: {
+      type: String
     }
   }]
 });
@@ -64,8 +66,10 @@ _mongoose2.default.model('ChoosedResult', choosedResultSchema);
 
 if (process.env.MONGOLAB_URI) {
   _mongoose2.default.connect(process.env.MONGOLAB_URI);
+  console.log('a');
 } else {
   _mongoose2.default.connect('mongodb://localhost/test');
+  console.log('b');
 }
 
 var UserInfo = _mongoose2.default.model('UserInfo');
@@ -75,6 +79,10 @@ var Questions = _mongoose2.default.model('Question');
 var ChoosedResult = _mongoose2.default.model('ChoosedResult');
 
 Questions.find({}, function (err, doc) {
+  if (err) {
+    console.log(err);
+  }
+  console.log(doc);
   questionList = doc;
 });
 
@@ -158,6 +166,7 @@ var appLogic = function () {
         third: 0,
         fourth: 0
       };
+
       var questionData = questionList[currentQuestionNumber];
       currentQuestionNumber = currentQuestionNumber + 1;
       questionData.questionNumber = currentQuestionNumber;

@@ -25,8 +25,10 @@ const questionSchema = new Mongoose.Schema({
   answerOptions: [
     {
       number: {
-        type: String,
-        answerSentence: String
+        type: String
+      },
+      answerSentence: {
+        type: String
       }
     }
   ]
@@ -56,8 +58,10 @@ Mongoose.model('ChoosedResult', choosedResultSchema);
 
 if (process.env.MONGOLAB_URI) {
   Mongoose.connect(process.env.MONGOLAB_URI);
+  console.log('a');
 } else {
   Mongoose.connect('mongodb://localhost/test');
+  console.log('b');
 }
 
 
@@ -68,7 +72,12 @@ const Questions = Mongoose.model('Question');
 const ChoosedResult = Mongoose.model('ChoosedResult');
 
 Questions.find({}, (err, doc) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log(doc);
   questionList = doc;
+
 });
 
 class appLogic {
@@ -138,6 +147,7 @@ class appLogic {
       third: 0,
       fourth: 0
     }
+
     let questionData = questionList[currentQuestionNumber];
     currentQuestionNumber = currentQuestionNumber + 1;
     questionData.questionNumber = currentQuestionNumber;
