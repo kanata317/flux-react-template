@@ -118,6 +118,7 @@ class appLogic {
         element.point = 1;
       } else {
         element.point = 0;
+        element.time = 0;
       }
       let choosedResult = new ChoosedResult(element);
       choosedResult.save(err => {

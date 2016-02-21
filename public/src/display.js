@@ -69,8 +69,8 @@ $(document).ready(function() {
       let rankDiv = '<div class="rankDiv">'
         + '<span class="rank">' + rank + '</span>'
         + '<span class="userName">' + element.userID.displayedName + '</span>'
-        + '<span class="point">' + element.sumPoint + '</span>'
-        + '<span class="time">' + element.sumTime + '</span>'
+        + '<span class="point">' + element.sumPoint + 'ポイント</span>'
+        + '<span class="time">' + element.sumTime / 1000 + '秒</span>'
         + '</div>'
       $(rankDiv).clone().hide().delay(index).prependTo($('.ranking')).slideDown();
     });

@@ -134,6 +134,7 @@ var appLogic = function () {
           element.point = 1;
         } else {
           element.point = 0;
+          element.time = 0;
         }
         var choosedResult = new ChoosedResult(element);
         choosedResult.save(function (err) {
