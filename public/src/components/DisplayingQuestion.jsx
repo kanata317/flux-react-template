@@ -8,7 +8,7 @@ export default class DisplayingQuestion extends React.Component {
       questionSentence = '問題準備中・・・・・・';
     }
     return (
-      <div>
+      <div className='questionSentence' >
                 {questionSentence}
             </div>
       );

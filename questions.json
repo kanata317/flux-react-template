@@ -1,22 +1,84 @@
-
 {
-     "questionSentence" : "今日の天気",
-     "answerOptions" : [
-          {
-              "number" : "1",
-               "answerSentence" : "晴れ"
-                },
-                 {
-                     "number" : "2",
-                      "answerSentence" : "曇り"
-                       },
-                       {
-                            "number" : "3",
-                             "answerSentence" : "雨"
-                             },
-                              {
-                                   "number" : "4",
-                                    "answerSentence" : "雪"
-                                    }
-                                     ]
-                                  }
+"questionSentence": "新郎の小学生の頃の夢はなんでしょう",
+"answerOptions": [
+{
+"number": "1",
+"answerSentence": "考古学者"
+},
+{
+"number": "2",
+"answerSentence": "ラグビー選手"
+},
+{
+"number": "3",
+"answerSentence": "ポケットモンスター"
+},
+{
+"number": "4",
+"answerSentence": "小学校の先生"
+}
+]
+},
+{
+"questionSentence": "初デートはどこで何をしたでしょう",
+"answerOptions": [
+{
+"number": "1",
+"answerSentence": "町田で買い物"
+},
+{
+"number": "2",
+"answerSentence": "軽井沢で買い物"
+},
+{
+"number": "3",
+"answerSentence": "新郎の家でイチャイチャ"
+},
+{
+"number": "4",
+"answerSentence": "新百合ケ丘でランチ"
+}
+]
+},
+{
+"questionSentence": "初めての喧嘩の理由はなんでしょう",
+"answerOptions": [
+{
+"number": "1",
+"answerSentence": "新郎が記念日を忘れた"
+},
+{
+"number": "2",
+"answerSentence": "新郎がペアリングを失くした"
+},
+{
+"number": "3",
+"answerSentence": "新郎がウィルコムを捨てた"
+},
+{
+"number": "4",
+"answerSentence": "新郎がデートの日をダブウルブッキングした"
+}
+]
+},
+{
+"questionSentence": "２人でディスニーリゾートに何回行ったでしょう",
+"answerOptions": [
+{
+"number": "1",
+"answerSentence": "２回"
+},
+{
+"number": "2",
+"answerSentence": "４回"
+},
+{
+"number": "3",
+"answerSentence": "５回"
+},
+{
+"number": "4",
+"answerSentence": "８回"
+}
+]
+}

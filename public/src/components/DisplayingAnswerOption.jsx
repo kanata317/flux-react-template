@@ -19,40 +19,26 @@ export default class DisplayingAnswerOption extends React.Component {
     console.log(this.state.optionNumber);
   }
   render() {
-    let buttonColor = '';
-    switch (this.props.answerOption.number) {
-      case '1':
-        buttonColor = 'red';
-        break;
-      case '2':
-        buttonColor = 'yellow';
-        break;
-      case '3':
-        buttonColor = 'green';
-        break;
-      case '4':
-        buttonColor = 'blue';
-        break;
-    }
+    let optionColor = 'option' + this.props.answerOption.number;
 
     if (this.props.choosedOption != '') {
+      let choosedOptionColor = '';
+      if (this.props.choosedOption == this.props.answerOption.number) {
+        choosedOptionColor = 'choosedOption';
+      }
       return (
-        <div>
-              <button className={buttonColor} disabled>
-                  {this.props.answerOption.number}
-                  {this.props.answerOption.answerSentence}
-              </button>
+        <div className={choosedOptionColor} disabled>
+              <span className={optionColor}>{this.props.answerOption.number}</span>
+              <span className='optionText'>{this.props.answerOption.answerSentence}</span>
           </div>
         );
 
     } else {
       return (
-        <div>
-              <button className={buttonColor} onClick={this.sendChooesedOption}>
-                  {this.props.answerOption.number}
-                  {this.props.answerOption.answerSentence}
-              </button>
-          </div>
+        <div onClick={this.sendChooesedOption}>
+                <span className={optionColor}>{this.props.answerOption.number}</span>
+                <span className='optionText'>{this.props.answerOption.answerSentence}</span>
+            </div>
         );
     }
   }

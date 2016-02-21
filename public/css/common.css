@@ -1,0 +1,100 @@
+body {
+    background-image:url("../images/background.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+}
+
+.loginArea {
+    margin: 30em 0;
+
+}
+.loginArea div {
+    width: 50%;
+    height: 10%;
+    margin: 0 auto;
+    font-size: 3em
+}
+
+.loginArea div input {
+    font-size: 1em;
+}
+
+.loginArea button {
+    font-size: 1em;
+}
+
+.initArea {
+    margin: 10em 0;
+    text-align: center;
+    font-size: 5em;
+}
+
+
+
+.option1 {
+    background-color: #578EBE;
+}
+.option1, .option2, .option3, .option4 {
+    width: 1.6em;
+    height: 1.6em;
+    margin: 0.2em;
+    border-radius: 100%;
+    display: inline-block;
+    text-align: center;
+}
+.option2 {
+    background-color: #E25A59;
+}
+.option3 {
+    background-color: #43B5AD;
+}
+.option4 {
+    background-color: #DEB948;
+}
+.questionSentence {
+    width: 95%;
+    height: 20%;
+    margin: 0.2em 20px;
+    font-size: 5em;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    padding: 0.5em 0;
+}
+
+.choosedOptions {
+    width: 100%;
+    height: 60%;
+}
+
+.choosedOptions div {
+    width: 95%;
+    height: 13em;
+    background-color: #253F68;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    margin: 20px;
+    cursor:pointer;
+}
+
+.choosedOptions span {
+    line-height: 1.6em;
+    font-size: 100px;
+    color: #FFFFFF;
+}
+
+span.optionText {
+    font-size: 3.5em;
+    width: 12em;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: -1em;
+}
+
+.choosedOptions .choosedOption {
+    background-color: deepskyblue;
+}

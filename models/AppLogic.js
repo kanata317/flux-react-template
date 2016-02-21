@@ -14,7 +14,7 @@ var currentQuestionNumber = 0;
 var questionList = [];
 var startTime = 0;
 var choosedResultList = [];
-var choosedResultMap = {};
+var choosedResults = [];
 
 var userInfoSchema = new _mongoose2.default.Schema({
   userID: {
@@ -56,7 +56,8 @@ var choosedResultSchema = new _mongoose2.default.Schema({
     type: String
   },
   userID: {
-    type: String
+    type: _mongoose2.default.Schema.Types.ObjectId,
+    ref: 'UserInfo'
   }
 });
 
@@ -120,8 +121,14 @@ var appLogic = function () {
     }
   }, {
     key: 'recieveAnswer',
-    value: function recieveAnswer(questionAnswer) {
+    value: function recieveAnswer(questionAnswer, callback) {
       var answerOption = questionAnswer.answerOption;
+      callback({
+        actionType: 'displayAnswer',
+        deliveredData: {
+          answerOption: answerOption
+        }
+      });
       choosedResultList.map(function (element) {
         if (element.choosedOption == answerOption) {
           element.point = 1;
@@ -150,7 +157,7 @@ var appLogic = function () {
         callback({
           actionType: 'login',
           deliveredData: {
-            userID: authenticationData.userID,
+            userID: doc[0]._id,
             isLogin: isLogin
           }
         });
@@ -160,12 +167,7 @@ var appLogic = function () {
     key: 'sendQuestion',
     value: function sendQuestion(callback) {
       choosedResultList = [];
-      choosedResultMap = {
-        first: 0,
-        second: 0,
-        third: 0,
-        fourth: 0
-      };
+      choosedResults = [0, 0, 0, 0];
 
       var questionData = questionList[currentQuestionNumber];
       currentQuestionNumber = currentQuestionNumber + 1;
@@ -181,7 +183,10 @@ var appLogic = function () {
     value: function sendChoosedResults(callback) {
       callback({
         actionType: 'displayChoosedResults',
-        deliveredData: choosedResultMap
+        deliveredData: {
+          choosedResults: choosedResults,
+          countResults: choosedResultList.length
+        }
       });
     }
   }, {
@@ -195,21 +200,33 @@ var appLogic = function () {
           },
           'sumTime': {
             '$sum': '$spentTime'
+          },
+          'userID': {
+            $first: '$userID'
           }
+
         }
       }, {
-        '$sort': [{
-          'sumePoint': 1
-        }, {
+        '$sort': {
+          'sumePoint': 1,
           'sumTime': -1
-        }]
+        }
       }], function (err, docs) {
         if (err) {
           console.log(err);
         } else {
-          callback({
-            actionType: 'displayRanking',
-            deliveredData: docs
+          console.log(docs);
+          ChoosedResult.populate(docs, {
+            'path': 'userID'
+          }, function (err, result) {
+            if (err) {
+              console.log(err);
+            } else {
+              callback({
+                actionType: 'displayRanking',
+                deliveredData: result
+              });
+            }
           });
         }
       });
@@ -222,16 +239,16 @@ var appLogic = function () {
       choosedResultList.push(storedData);
       switch (storedData.choosedOption) {
         case '1':
-          choosedResultMap.first = choosedResultMap.first + 1;
+          choosedResults[0] = choosedResults[0] + 1;
           break;
         case '2':
-          choosedResultMap.second = choosedResultMap.second + 1;
+          choosedResults[1] = choosedResults[1] + 1;
           break;
         case '3':
-          choosedResultMap.third = choosedResultMap.third + 1;
+          choosedResults[2] = choosedResults[2] + 1;
           break;
         case '4':
-          choosedResultMap.fourth = choosedResultMap.fourth + 1;
+          choosedResults[3] = choosedResults[3] + 1;
           break;
         default:
       }

@@ -4,7 +4,7 @@ let currentQuestionNumber = 0;
 let questionList = [];
 let startTime = 0;
 let choosedResultList = [];
-let choosedResultMap = {};
+let choosedResults = [];
 
 const userInfoSchema = new Mongoose.Schema({
   userID: {
@@ -48,7 +48,8 @@ const choosedResultSchema = new Mongoose.Schema({
     type: String
   },
   userID: {
-    type: String
+    type: Mongoose.Schema.Types.ObjectId,
+    ref: 'UserInfo'
   }
 })
 
@@ -104,8 +105,14 @@ class appLogic {
     });
   }
 
-  recieveAnswer(questionAnswer) {
+  recieveAnswer(questionAnswer, callback) {
     let answerOption = questionAnswer.answerOption;
+    callback({
+      actionType: 'displayAnswer',
+      deliveredData: {
+        answerOption: answerOption
+      }
+    });
     choosedResultList.map(element => {
       if (element.choosedOption == answerOption) {
         element.point = 1;
@@ -132,7 +139,7 @@ class appLogic {
       callback({
         actionType: 'login',
         deliveredData: {
-          userID: authenticationData.userID,
+          userID: doc[0]._id,
           isLogin: isLogin
         }
       });
@@ -141,12 +148,7 @@ class appLogic {
   }
   sendQuestion(callback) {
     choosedResultList = [];
-    choosedResultMap = {
-      first: 0,
-      second: 0,
-      third: 0,
-      fourth: 0
-    }
+    choosedResults = [0, 0, 0, 0]
 
     let questionData = questionList[currentQuestionNumber];
     currentQuestionNumber = currentQuestionNumber + 1;
@@ -161,8 +163,11 @@ class appLogic {
   sendChoosedResults(callback) {
     callback({
       actionType: 'displayChoosedResults',
-      deliveredData: choosedResultMap
-    })
+      deliveredData: {
+        choosedResults: choosedResults,
+        countResults: choosedResultList.length
+      }
+    });
   }
 
   sendRanking(callback) {
@@ -175,26 +180,36 @@ class appLogic {
           },
           'sumTime': {
             '$sum': '$spentTime'
-          }
-        }
-      },
-      {
-        '$sort': [
-          {
-            'sumePoint': 1
           },
-          {
-            'sumTime': -1
+          'userID': {
+            $first: '$userID'
           }
-        ]
+
+        }
+      }
+      ,
+      {
+        '$sort': {
+          'sumePoint': 1,
+          'sumTime': -1
+        }
       }
     ], (err, docs) => {
       if (err) {
         console.log(err);
       } else {
-        callback({
-          actionType: 'displayRanking',
-          deliveredData: docs
+        console.log(docs);
+        ChoosedResult.populate(docs, {
+          'path': 'userID'
+        }, (err, result) => {
+          if (err) {
+            console.log(err);
+          } else {
+            callback({
+              actionType: 'displayRanking',
+              deliveredData: result
+            });
+          }
         });
       }
     });
@@ -206,16 +221,16 @@ class appLogic {
     choosedResultList.push(storedData);
     switch (storedData.choosedOption) {
       case '1':
-        choosedResultMap.first = choosedResultMap.first + 1
+        choosedResults[0] = choosedResults[0] + 1
         break;
       case '2':
-        choosedResultMap.second = choosedResultMap.second + 1
+        choosedResults[1] = choosedResults[1] + 1
         break;
       case '3':
-        choosedResultMap.third = choosedResultMap.third + 1
+        choosedResults[2] = choosedResults[2] + 1
         break;
       case '4':
-        choosedResultMap.fourth = choosedResultMap.fourth + 1
+        choosedResults[3] = choosedResults[3] + 1
         break;
       default:
     }

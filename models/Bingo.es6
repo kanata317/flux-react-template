@@ -40,7 +40,7 @@ module.exports = function(app) {
           appLogic.sendChoosedResults(broadcastFunction);
           break;
         case 'recieveAnswer':
-          appLogic.recieveAnswer(recieveData.questionAnswer);
+          appLogic.recieveAnswer(recieveData.questionAnswer, broadcastFunction);
           break;
         default:
 

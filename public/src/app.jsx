@@ -10,6 +10,13 @@ import LoginActions from './actions/LoginActions'
 
 var sapiAction = new SocketAPIAction();
 var loginActions = new LoginActions();
+
+let style = {
+  divStyle: {
+    width: '100%',
+    height: '100%'
+  }
+};
 // このアプリケーションのメインとなる App クラス
 class App extends React.Component {
   constructor() {
@@ -46,7 +53,7 @@ class App extends React.Component {
       //     alertComment = 'passが違うよ';
       //   }
       return (
-        <div>
+        <div className='loginArea'>
                   <div>userID<input type='text' value={this.state.userID} onChange={this.changeText} /></div>
                   <div>pass<input type="text" ref='inputPass'/></div>
                   <div><button onClick={this.login}>login</button></div>
@@ -66,16 +73,16 @@ class App extends React.Component {
 
       if (this.state.isDisplayedQuestion) {
         return (
-          <div>
+          <div style={style.divStyle}>
                     <DisplayingQuestion questionSentence={this.state.questionSentence}/>
-                    <div>
+                    <div className='choosedOptions'>
                         {answerOptions}
                     </div>
                 </div>
           );
       } else {
         return (
-          <div>
+          <div className='initArea'>
             問題準備中・・・・・・
                 </div>
           );

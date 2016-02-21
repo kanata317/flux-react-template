@@ -1,0 +1,3 @@
+mongoimport -h ds011278.mongolab.com:11278 -d heroku_1hv5qx74 -c userinfos -u heroku_1hv5qx74 -p 73sh6tjhanan6aruk6rekssopg --file userInfo.json
+:@ds011278.mongolab.com:11278/
+mongoimport -h localhost:27017 -c questions -u test --file questions.json -p hCCBtRDRKU2a4lJ0K5hwWQEBn7HnoIKfftPz6JvG
