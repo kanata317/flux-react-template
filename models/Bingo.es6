@@ -37,6 +37,12 @@ module.exports = function(app) {
         case 'sendRanking':
           appLogic.sendRanking(broadcastFunction);
           break;
+        case 'send8Ranking':
+          appLogic.send8Ranking(broadcastFunction);
+          break;
+        case 'send3Ranking':
+          appLogic.send3Ranking(broadcastFunction);
+          break;
         case 'sendChoosedResults':
           appLogic.sendChoosedResults(broadcastFunction);
           break;

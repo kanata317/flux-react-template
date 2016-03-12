@@ -130,17 +130,19 @@ class appLogic {
   }
   login(authenticationData, callback) {
     let isLogin = false;
+    let id = "";
     UserInfo.find({
       userID: authenticationData.userID,
       pass: authenticationData.pass
     }, (err, doc) => {
       if (Object.keys(doc).length != 0) {
         isLogin = true;
+        id = doc[0]._id;
       }
       callback({
         actionType: 'login',
         deliveredData: {
-          userID: doc[0]._id,
+          userID: id,
           isLogin: isLogin
         }
       });
@@ -215,6 +217,20 @@ class appLogic {
       }
     });
   }
+  send8Ranking(callback) {
+    callback({
+      actionType: 'display8Ranking',
+      deliveredData: result
+    });
+  }
+
+  send3Ranking(callback) {
+    callback({
+      actionType: 'display3Ranking',
+      deliveredData: result
+    });
+  }
+
 
   storeChooesedOption(storedData) {
     let spentTime = new Date() - startTime;

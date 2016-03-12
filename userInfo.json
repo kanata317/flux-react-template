@@ -1,4 +1,9 @@
 {
+	"userID":"",
+	"pass":"test",
+	"displayedName":""
+}
+{
 	"userID":"m_aoyagi",
 	"pass":"test",
 	"displayedName":"アオヤギ　マミ"
@@ -14,7 +19,7 @@
 	"displayedName":"アンザイ　ケンイチロウ"
 }
 {
-	"userID":"Y_ikeno",
+	"userID":"y_ikeno",
 	"pass":"test",
 	"displayedName":"イケノ　ヨシエ"
 }
@@ -47,6 +52,11 @@
 	"userID":"c_kaneko",
 	"pass":"test",
 	"displayedName":"カネコ　チサト"
+}
+{
+	"userID":"c_kawakami",
+	"pass":"test",
+	"displayedName":"カワカミ　チサト"
 }
 {
 	"userID":"k_kawaguchi",
@@ -229,6 +239,11 @@
 	"displayedName":"ヤガシワ　ノリコ"
 }
 {
+	"userID":"m_yazaki",
+	"pass":"test",
+	"displayedName":"ヤザキ　マユミ"
+}
+{
 	"userID":"k_yamada",
 	"pass":"test",
 	"displayedName":"キングカズキ"
@@ -264,7 +279,7 @@
 	"displayedName":"イガラシ　カズヤ"
 }
 {
-	"userID":"Y_ikeda",
+	"userID":"y_ikeda",
 	"pass":"test",
 	"displayedName":"イエケダ　ユウカ"
 }
@@ -324,6 +339,11 @@
 	"displayedName":"キタザワ　ダイシ"
 }
 {
+	"userID":"d_kuzuoka",
+	"pass":"test",
+	"displayedName":"クズオカ　ダイ"
+}
+{
 	"userID":"r_kudo",
 	"pass":"test",
 	"displayedName":"クドウ　リサ"
@@ -359,7 +379,7 @@
 	"displayedName":"シミズ　ゲンキ"
 }
 {
-	"userID":"n_sugawawara",
+	"userID":"n_sugawara",
 	"pass":"test",
 	"displayedName":"スガワラ　ノリコ"
 }
@@ -369,7 +389,7 @@
 	"displayedName":"スズキ　メイ"
 }
 {
-	"userID":"a_soukura",
+	"userID":"a_sokura",
 	"pass":"test",
 	"displayedName":"ソウクラ　アヤコ"
 }
@@ -399,7 +419,7 @@
 	"displayedName":"トムラ　ナツキ"
 }
 {
-	"userID":"t_okada",
+	"userID":"t_nakao",
 	"pass":"test",
 	"displayedName":"ナカオ　タイチ"
 }
@@ -419,7 +439,7 @@
 	"displayedName":"ナカセ　カズヤ"
 }
 {
-	"userID":"s_nakmura",
+	"userID":"s_nakamura",
 	"pass":"test",
 	"displayedName":"ナカムラ　ショウコ"
 }
@@ -439,7 +459,7 @@
 	"displayedName":"ヒライ　ミズサ"
 }
 {
-	"userID":"t_hriata",
+	"userID":"t_hirata",
 	"pass":"test",
 	"displayedName":"ヒラタ　トモミ"
 }

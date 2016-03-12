@@ -15,6 +15,9 @@ $(document).ready(function() {
   let rankingResultMusic = new Audio('../music/rankingResult.mp3');
   let endMusic = new Audio('../music/end.mp3');
 
+  let best8List = [];
+  let best3List = [];
+
 
 
   function deployQuestion(questionData) {
@@ -85,6 +88,31 @@ $(document).ready(function() {
     rankingMusic.play();
     rankingList.map((element, index) => {
       let rank = rankingList.length - index;
+      if (rank < 2) {
+        best3List.push(element);
+      } else if (rank < 3) {
+        best8List.push(element);
+      }
+      let rankDiv = '<div class="rankDiv">'
+        + '<span class="rank">' + rank + '</span>'
+        + '<span class="userName">' + element.userID.displayedName + '</span>'
+        + '<span class="point">' + element.sumPoint + 'ポイント</span>'
+        + '<span class="time">' + element.sumTime / 1000 + '秒</span>'
+        + '</div>'
+      $(rankDiv).clone().hide().delay(index).prependTo($('.ranking')).slideDown();
+    });
+    rankingMusic.pause();
+    rankingMusic.currentTime = 0;
+    rankingResultMusic.play();
+  }
+  function displayRankingBest(rankingList) {
+    allHide();
+    $(".ranking").empty();
+    $(".ranking").show();
+    rankingMusic.loop = true;
+    rankingMusic.play();
+    rankingList.map((element, index) => {
+      let rank = rankingList.length - index;
       let rankDiv = '<div class="rankDiv">'
         + '<span class="rank">' + rank + '</span>'
         + '<span class="userName">' + element.userID.displayedName + '</span>'
@@ -125,6 +153,12 @@ $(document).ready(function() {
         break;
       case 'displayRanking':
         displayRanking(recieveData.deliveredData);
+        break;
+      case 'display8Ranking':
+        displayRankingBest(best8List);
+        break;
+      case 'display3Ranking':
+        displayRankingBest(best3List);
         break;
 
 

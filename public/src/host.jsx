@@ -44,6 +44,16 @@ class Host extends React.Component {
       actionType: 'sendRanking'
     });
   }
+  send8Ranking() {
+    socket.emit('control', {
+      actionType: 'send8Ranking'
+    });
+  }
+  send3Ranking() {
+    socket.emit('control', {
+      actionType: 'send3Ranking'
+    });
+  }
 
   sendChoosedResults() {
     socket.emit('control', {
@@ -84,6 +94,12 @@ class Host extends React.Component {
             </div>
             <div>
                 <button onClick={this.sendRanking}>ランキング出力</button>
+            </div>
+            <div>
+                <button onClick={this.send8Ranking}>ランキング8出力</button>
+            </div>
+            <div>
+                <button onClick={this.send3Ranking}>ランキング3出力</button>
             </div>
         </div>
       );
