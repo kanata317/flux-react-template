@@ -202,9 +202,6 @@ class appLogic {
       if (err) {
         console.log(err);
       } else {
-        console.log(docs[0].sumPoint);
-        console.log(docs[1].sumPoint);
-        console.log(docs[2].sumPoint);
         ChoosedResult.populate(docs, {
           'path': 'userID'
         }, (err, result) => {
@@ -213,7 +210,7 @@ class appLogic {
           } else {
             callback({
               actionType: 'displayRanking',
-              deliveredData: docs
+              deliveredData: result
             });
           }
         });
