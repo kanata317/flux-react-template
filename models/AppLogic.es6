@@ -193,15 +193,18 @@ class appLogic {
       ,
       {
         '$sort': {
-          'sumePoint': 1,
+          'sumPoint': 1,
           'sumTime': -1
+
         }
       }
     ], (err, docs) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(docs);
+        console.log(docs[0].sumPoint);
+        console.log(docs[1].sumPoint);
+        console.log(docs[2].sumPoint);
         ChoosedResult.populate(docs, {
           'path': 'userID'
         }, (err, result) => {
@@ -210,7 +213,7 @@ class appLogic {
           } else {
             callback({
               actionType: 'displayRanking',
-              deliveredData: result
+              deliveredData: docs
             });
           }
         });
@@ -219,15 +222,13 @@ class appLogic {
   }
   send8Ranking(callback) {
     callback({
-      actionType: 'display8Ranking',
-      deliveredData: result
+      actionType: 'display8Ranking'
     });
   }
 
   send3Ranking(callback) {
     callback({
-      actionType: 'display3Ranking',
-      deliveredData: result
+      actionType: 'display3Ranking'
     });
   }
 

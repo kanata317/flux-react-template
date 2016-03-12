@@ -84,35 +84,38 @@ $(document).ready(function() {
     allHide();
     $(".ranking").empty();
     $(".ranking").show();
+    best3List = [];
+    best8List = [];
     rankingMusic.loop = true;
     rankingMusic.play();
     rankingList.map((element, index) => {
       let rank = rankingList.length - index;
-      if (rank < 2) {
+      if (rank < 4) {
         best3List.push(element);
-      } else if (rank < 3) {
+      } else if (rank < 9) {
         best8List.push(element);
+      } else {
+        let rankDiv = '<div class="rankDiv">'
+          + '<span class="rank">' + rank + '</span>'
+          + '<span class="userName">' + element.userID.displayedName + '</span>'
+          + '<span class="point">' + element.sumPoint + 'ポイント</span>'
+          + '<span class="time">' + element.sumTime / 1000 + '秒</span>'
+          + '</div>'
+        $(rankDiv).clone().hide().delay(index).prependTo($('.ranking')).slideDown();
       }
-      let rankDiv = '<div class="rankDiv">'
-        + '<span class="rank">' + rank + '</span>'
-        + '<span class="userName">' + element.userID.displayedName + '</span>'
-        + '<span class="point">' + element.sumPoint + 'ポイント</span>'
-        + '<span class="time">' + element.sumTime / 1000 + '秒</span>'
-        + '</div>'
-      $(rankDiv).clone().hide().delay(index).prependTo($('.ranking')).slideDown();
     });
     rankingMusic.pause();
     rankingMusic.currentTime = 0;
     rankingResultMusic.play();
   }
-  function displayRankingBest(rankingList) {
+  function displayRankingBest(rankingList, rankBase) {
     allHide();
     $(".ranking").empty();
     $(".ranking").show();
     rankingMusic.loop = true;
     rankingMusic.play();
     rankingList.map((element, index) => {
-      let rank = rankingList.length - index;
+      let rank = rankBase - index;
       let rankDiv = '<div class="rankDiv">'
         + '<span class="rank">' + rank + '</span>'
         + '<span class="userName">' + element.userID.displayedName + '</span>'
@@ -155,10 +158,10 @@ $(document).ready(function() {
         displayRanking(recieveData.deliveredData);
         break;
       case 'display8Ranking':
-        displayRankingBest(best8List);
+        displayRankingBest(best8List, 8);
         break;
       case 'display3Ranking':
-        displayRankingBest(best3List);
+        displayRankingBest(best3List, 3);
         break;
 
 

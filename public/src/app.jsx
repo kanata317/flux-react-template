@@ -49,14 +49,15 @@ class App extends React.Component {
   render() {
     if (!this.state.isLogin) {
       let alertComment = '';
-      //   if (this.state.userID != '') {
-      //     alertComment = 'passが違うよ';
-      //   }
+      if (this.state.userID != '') {
+        alertComment = 'passが違うよ';
+      }
       return (
         <div className='loginArea'>
                   <div>userID<input type='text' value={this.state.userID} onChange={this.changeText} /></div>
                   <div>pass<input type="text" ref='inputPass'/></div>
                   <div><button onClick={this.login}>login</button></div>
+                  <div>userIDの例）カヤシマ　ケンタロウの場合：k_kayashima</div>
                   <span>{alertComment}</span>
               </div>
         );

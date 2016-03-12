@@ -211,14 +211,17 @@ var appLogic = function () {
         }
       }, {
         '$sort': {
-          'sumePoint': 1,
+          'sumPoint': 1,
           'sumTime': -1
+
         }
       }], function (err, docs) {
         if (err) {
           console.log(err);
         } else {
-          console.log(docs);
+          console.log(docs[0].sumPoint);
+          console.log(docs[1].sumPoint);
+          console.log(docs[2].sumPoint);
           ChoosedResult.populate(docs, {
             'path': 'userID'
           }, function (err, result) {
@@ -227,7 +230,7 @@ var appLogic = function () {
             } else {
               callback({
                 actionType: 'displayRanking',
-                deliveredData: result
+                deliveredData: docs
               });
             }
           });
@@ -238,16 +241,14 @@ var appLogic = function () {
     key: 'send8Ranking',
     value: function send8Ranking(callback) {
       callback({
-        actionType: 'display8Ranking',
-        deliveredData: result
+        actionType: 'display8Ranking'
       });
     }
   }, {
     key: 'send3Ranking',
     value: function send3Ranking(callback) {
       callback({
-        actionType: 'display3Ranking',
-        deliveredData: result
+        actionType: 'display3Ranking'
       });
     }
   }, {
