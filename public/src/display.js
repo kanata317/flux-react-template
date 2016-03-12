@@ -7,6 +7,16 @@ $(document).ready(function() {
     $(".ranking").hide();
   }
 
+  let startMusic = new Audio('../music/start.mp3');
+  let answerMusic = new Audio('../music/answer.mp3');
+  let answerTimeMusic = new Audio('../music/answerTime.mp3');
+  let statusMusic = new Audio('../music/status.mp3');
+  let rankingMusic = new Audio('../music/ranking.mp3');
+  let rankingResultMusic = new Audio('../music/rankingResult.mp3');
+  let endMusic = new Audio('../music/end.mp3');
+
+
+
   function deployQuestion(questionData) {
     allHide();
     $(".questionSentence").text(questionData.questionSentence);
@@ -19,14 +29,19 @@ $(document).ready(function() {
     $(".choosedOptions").hide();
     $(".optionCount").hide();
     $(".question").show();
+    startMusic.play();
 
   }
 
   function start() {
     $(".choosedOptions").show();
+    answerTimeMusic.play();
   }
 
   function end() {
+    answerTimeMusic.pause();
+    answerTimeMusic.currentTime = 0;
+    endMusic.play();
     allHide();
   }
 
@@ -38,9 +53,11 @@ $(document).ready(function() {
     });
     $(".question").show();
     $(".optionCount").show();
+    statusMusic.play();
   }
 
   function displayAnswer(answerOption) {
+    answerMusic.play();
     let targetClass = '#optionDiv' + answerOption.answerOption;
     setTimeout(() => {
       $(targetClass).addClass('answerDiv');
@@ -64,6 +81,8 @@ $(document).ready(function() {
     allHide();
     $(".ranking").empty();
     $(".ranking").show();
+    rankingMusic.loop = true;
+    rankingMusic.play();
     rankingList.map((element, index) => {
       let rank = rankingList.length - index;
       let rankDiv = '<div class="rankDiv">'
@@ -74,8 +93,9 @@ $(document).ready(function() {
         + '</div>'
       $(rankDiv).clone().hide().delay(index).prependTo($('.ranking')).slideDown();
     });
-
-
+    rankingMusic.pause();
+    rankingMusic.currentTime = 0;
+    rankingResultMusic.play();
   }
 
 

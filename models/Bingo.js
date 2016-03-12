@@ -33,6 +33,7 @@ module.exports = function (app) {
           break;
         case 'init':
           appLogic.init();
+          break;
         case 'start':
           appLogic.start(broadcastFunction);
           break;
