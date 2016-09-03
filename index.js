@@ -19,8 +19,9 @@ var _Bingo2 = _interopRequireDefault(_Bingo);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
-app.set('port', process.env.PORT || 5000);
-
+var port = process.env.PORT || 5000;
+console.log('port:' + port);
+app.set('port', port);
 app.use(_express2.default.static(__dirname + '/public'));
 var http = _http2.default.Server(app);
 
@@ -30,6 +31,6 @@ app.set('socket.io', io);
 var socketModule = (0, _Bingo2.default)(app);
 
 // start server
-http.listen(process.env.PORT, function () {
-  console.log('server start - port:' + process.env.PORT);
+http.listen(app.get('port'), function () {
+  console.log('server start - port:' + app.get('port'));
 });

@@ -3,8 +3,9 @@ import Http from 'http';
 import SocketIO from 'socket.io';
 import Bingo from './models/Bingo';
 const app = Express();
-app.set('port', (process.env.PORT || 5000));
-
+let port = process.env.PORT || 5000;
+console.log('port:' + port);
+app.set('port', (port));
 app.use(Express.static(__dirname + '/public'));
 const http = Http.Server(app);
 
@@ -15,6 +16,6 @@ let socketModule = Bingo(app);
 
 
 // start server
-http.listen(process.env.PORT, function() {
-  console.log('server start - port:' + process.env.PORT);
+http.listen(app.get('port'), function() {
+  console.log('server start - port:' + app.get('port'));
 });

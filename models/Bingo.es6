@@ -13,7 +13,7 @@ module.exports = function(app) {
 
     const emitToParticularFunction = (sendData) => {
       io.to(socket.id).emit('server', sendData);
-    }
+    };
 
     const broadcastFunction = (sendData) => {
       console.log('broadcast');
@@ -53,7 +53,7 @@ module.exports = function(app) {
 
       }
       console.log('control');
-    })
+    });
 
     socket.on('answer', (recieveData) => {
       console.log('answer');
